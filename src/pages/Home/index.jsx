@@ -1,32 +1,34 @@
 import { useRef } from "react";
+import api from "../../services/api";
 
 import {
-  Button,
   Container,
   ContainerInputs,
   Form,
   Input,
   InputLabel,
   Title,
-  TopBackground,
 } from "./styles";
 
-import UsersImage from "../../assets/users.png";
+import Button from "../../components/Button";
+import TopBackground from "../../components/TopBackground";
 
 function Home() {
   const inputName = useRef()
   const inputAge = useRef()
   const inputEmail = useRef()
 
-  function registerNewUser() {
-    console.log(inputName.current.value)
+  async function registerNewUser() {
+    await api.post('/usuarios', {
+      Email: inputEmail.current.value,
+      age: parseInt(inputAge.current.value),
+      name: inputName.current.value
+    })
   }
 
   return (
     <Container>
-      <TopBackground>
-        <img src={UsersImage} alt="imagem-usuarios" />
-      </TopBackground>
+      <TopBackground />
 
       <Form>
         <Title>Cadastrar Usuário</Title>
