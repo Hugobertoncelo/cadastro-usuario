@@ -47,7 +47,7 @@ function ListUsers() {
         {users.map((user) => (
           <CardsUsers key={user.id}>
             <AvatarUser
-              src={`https://avatar.iran.liara.run/public/?username=${user.id}`}
+              src={`http://avatar.iran.liara.run/public/?username=${user.id}`}
             />
             <div>
               <h3>{user.name}</h3>
