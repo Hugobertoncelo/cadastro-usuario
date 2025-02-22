@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
 import {
+  Title,
   Container,
-  ContainerInputs,
   Form,
+  ContainerInput,
   Input,
   InputLabel,
-  Title,
 } from "./styles";
 
 import Button from "../../components/Button";
@@ -23,27 +23,23 @@ function Home() {
 
   async function registerNewUser() {
     await api.post("/usuarios", {
-      Email: inputEmail.current.value,
+      email: inputEmail.current.value,
       age: parseInt(inputAge.current.value),
       name: inputName.current.value,
     });
   }
 
-  navigate("/lista-de-usuarios");
-
   return (
     <Container>
       <TopBackground />
-
       <Form>
         <Title>Cadastrar Usuário</Title>
-
-        <ContainerInputs>
+        <ContainerInput>
           <div>
             <InputLabel>
               Nome<span> *</span>
             </InputLabel>
-            <Input type="text" placeholder="Nome do usuário" ref={inputName} />
+            <Input type="text" placeholder="Nome do Usuário" ref={inputName} />
           </div>
 
           <div>
@@ -52,29 +48,28 @@ function Home() {
             </InputLabel>
             <Input
               type="number"
-              placeholder="Idade do usuário"
+              placeholder="Idade do Usuário"
               ref={inputAge}
             />
           </div>
-        </ContainerInputs>
-
+        </ContainerInput>
         <div style={{ width: "100%" }}>
           <InputLabel>
             E-mail<span> *</span>
           </InputLabel>
           <Input
             type="email"
-            placeholder="E-mail do usuário"
+            placeholder="E-mail do Usuário"
             ref={inputEmail}
           />
         </div>
         <Button type="button" onClick={registerNewUser} theme="primary">
           Cadastrar Usuário
         </Button>
-        <Button type="button" onClick={() => navigate("/lista-de-usuarios")}>
-          Ver lista de Usuários
-        </Button>
       </Form>
+      <Button type="button" onClick={() => navigate("Lista-de-Usuários")}>
+        Ver Lista de Usuários
+      </Button>
     </Container>
   );
 }

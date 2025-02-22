@@ -4,9 +4,8 @@ import { Background } from "./styles";
 function TopBackground() {
   return (
     <Background>
-      <img src={UsersImage} alt="imagem-usuarios" />
+      <img src={UsersImage} alt="imagem-usuários" />
     </Background>
   );
 }
-
-export default TopBackground
+export default TopBackground;

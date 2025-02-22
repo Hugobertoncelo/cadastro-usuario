@@ -1,17 +1,16 @@
-import { Button } from "./styles";
 import PropTypes from "prop-types";
+import { Button } from "./styles";
 
-function DefaultButton({ children, theme, ...props }) {
+function DefaultMyButton({ children, theme, ...props }) {
   return (
     <Button {...props} theme={theme}>
       {children}
     </Button>
   );
 }
-
-DefaultButton.propTypes = {
+DefaultMyButton.propTypes = {
   children: PropTypes.node.isRequired,
   theme: PropTypes.string,
 };
 
-export default DefaultButton;
+export default DefaultMyButton;
