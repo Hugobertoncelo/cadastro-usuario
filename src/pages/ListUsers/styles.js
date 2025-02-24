@@ -31,6 +31,7 @@ export const CardsUsers = styled.div`
 background-color: #252d48;
 padding: 16px;
 border-radius:32px;
+display: flex;
 justify-content: space-between;
 align-items: center;
 gap: 20px;
@@ -51,17 +52,15 @@ p {
 `
 export const TrashIcon = styled.img`
 cursor: pointer;
-padding: left;
+padding-left: 30px;
 
 &:hover {
-  background: linear-gradient(180deg, #f00 0%, #f00);
   transform: scale(1.1);
   opacity: 0.8;
 }
 
 &:active {
-  background: linear-gradient(180deg, #f00 0%, #f00);
-  transform: scale(0.9);
+  opacity: 0.5;
 }
 `
 export const AvatarUser = styled.img`

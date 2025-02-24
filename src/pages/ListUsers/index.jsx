@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-import Button from "../../components/button";
+import Button from "../../components/Button";
 import TopBackground from "../../components/TopBackground";
 import Trash from "../../assets/trash.svg";
 import {
