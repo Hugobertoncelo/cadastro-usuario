@@ -6,7 +6,7 @@ import {
   Title,
   Container,
   Form,
-  ContainerInput,
+  ContainerInputs,
   Input,
   InputLabel,
 } from "./styles";
@@ -22,52 +22,30 @@ function Home() {
   const navigate = useNavigate();
 
   async function registerNewUser() {
-    try {
-      // Validar os campos antes de enviar
-      if (
-        !inputName.current.value ||
-        !inputAge.current.value ||
-        !inputEmail.current.value
-      ) {
-        alert("Por favor, preencha todos os campos!");
-        return;
-      }
+    const data = await api.post("/usuarios", {
+      email: inputEmail.current.value,
+      age: parseInt(inputAge.current.value),
+      name: inputName.current.value,
+    });
 
-      await api.post("/usuarios", {
-        email: inputEmail.current.value,
-        age: parseInt(inputAge.current.value),
-        name: inputName.current.value,
-      });
+    console.log(data);
 
-      alert("Usuário cadastrado com sucesso!");
-      navigate("/Lista-de-Usuários"); // Redireciona para a lista após o cadastro
-    } catch (error) {
-      console.error("Erro ao cadastrar usuário:", error);
-      if (error.response) {
-        alert(
-          `Erro ao cadastrar: ${
-            error.response.data.error || "Erro no servidor"
-          }`
-        );
-      } else if (error.request) {
-        alert("Erro de rede: Não foi possível conectar ao servidor.");
-      } else {
-        alert("Erro ao cadastrar usuário. Tente novamente.");
-      }
-    }
+    navigate("/lista-de-usuarios");
   }
 
   return (
     <Container>
       <TopBackground />
+
       <Form>
         <Title>Cadastrar Usuário</Title>
-        <ContainerInput>
+
+        <ContainerInputs>
           <div>
             <InputLabel>
               Nome<span> *</span>
             </InputLabel>
-            <Input type="text" placeholder="Nome do Usuário" ref={inputName} />
+            <Input type="text" placeholder="Nome do usuário" ref={inputName} />
           </div>
 
           <div>
@@ -76,26 +54,25 @@ function Home() {
             </InputLabel>
             <Input
               type="number"
-              placeholder="Idade do Usuário"
+              placeholder="Idade do usuário"
               ref={inputAge}
             />
           </div>
-        </ContainerInput>
+        </ContainerInputs>
+
         <div style={{ width: "100%" }}>
           <InputLabel>
             E-mail<span> *</span>
           </InputLabel>
-          <Input
-            type="email"
-            placeholder="E-mail do Usuário"
-            ref={inputEmail}
-          />
+          <Input type="email" placeholder="Email do usuário" ref={inputEmail} />
         </div>
+
         <Button type="button" onClick={registerNewUser} theme="primary">
           Cadastrar Usuário
         </Button>
       </Form>
-      <Button type="button" onClick={() => navigate("/Lista-de-Usuários")}>
+
+      <Button type="button" onClick={() => navigate("/lista-de-usuarios")}>
         Ver Lista de Usuários
       </Button>
     </Container>

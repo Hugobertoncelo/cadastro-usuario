@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Container = styled.div`
 background-color: #181f36;
 display: flex;
@@ -24,7 +23,7 @@ font-size: 38px;
 font-style: normal;
 font-weight: 600;
 `
-export const ContainerInput = styled.div`
+export const ContainerInputs = styled.div`
 display: flex;
 gap: 20px;
 `
