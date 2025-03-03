@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import ListUsers from "./pages/ListUsers";
 
@@ -12,4 +12,6 @@ const router = createBrowserRouter([
     element: <ListUsers />,
   },
 ]);
-export default router;
+export default function Routes() {
+  return <RouterProvider router={router} />;
+}

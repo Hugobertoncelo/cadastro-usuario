@@ -22,11 +22,39 @@ function Home() {
   const navigate = useNavigate();
 
   async function registerNewUser() {
-    await api.post("/usuarios", {
-      email: inputEmail.current.value,
-      age: parseInt(inputAge.current.value),
-      name: inputName.current.value,
-    });
+    try {
+      // Validar os campos antes de enviar
+      if (
+        !inputName.current.value ||
+        !inputAge.current.value ||
+        !inputEmail.current.value
+      ) {
+        alert("Por favor, preencha todos os campos!");
+        return;
+      }
+
+      await api.post("/usuarios", {
+        email: inputEmail.current.value,
+        age: parseInt(inputAge.current.value),
+        name: inputName.current.value,
+      });
+
+      alert("Usuário cadastrado com sucesso!");
+      navigate("/Lista-de-Usuários"); // Redireciona para a lista após o cadastro
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      if (error.response) {
+        alert(
+          `Erro ao cadastrar: ${
+            error.response.data.error || "Erro no servidor"
+          }`
+        );
+      } else if (error.request) {
+        alert("Erro de rede: Não foi possível conectar ao servidor.");
+      } else {
+        alert("Erro ao cadastrar usuário. Tente novamente.");
+      }
+    }
   }
 
   return (
@@ -67,7 +95,7 @@ function Home() {
           Cadastrar Usuário
         </Button>
       </Form>
-      <Button type="button" onClick={() => navigate("Lista-de-Usuários")}>
+      <Button type="button" onClick={() => navigate("/Lista-de-Usuários")}>
         Ver Lista de Usuários
       </Button>
     </Container>
